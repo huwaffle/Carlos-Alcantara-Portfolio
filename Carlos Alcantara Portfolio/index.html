@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Alcantara — Portfolio</title>
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo">
+            <a href="#hero">&lt;CARLOS ALCANTARA/&gt;</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience &amp; Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle">
+            <span class="theme-label">MODE</span>
+
+            <button id="theme-switch" class="theme-switch" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
+                <span class="toggle-dot"></span>
+            </button>
+        </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <p class="greeting">Welcome, my name is</p>
+                <h1>Carlos Alcantara</h1>
+                <h2>Computer Science Student</h2>
+                <p class="hero-description">I build algorithms, backend systems, and web applications.</p>
+
+                <div class="hero-socials" aria-label="Social links">
+                    <a class="hero-social" href="https://github.com/huwaffle" target="_blank" rel="noreferrer">GitHub</a>
+                    <a class="hero-social" href="https://www.linkedin.com/in/carlosalcantara1827/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a class="hero-social" href="https://instagram.com/mewhencarlos" target="_blank" rel="noreferrer">Instagram</a>
+                    <a class="hero-social email-copy" href="mailto:carlos.alcantara.iii.27@gmail.com" data-email="carlos.alcantara.iii.27@gmail.com">Email</a>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="path-to-your-resume.pdf" class="btn resume-link" target="_blank" data-resume="Resume">Resume</a>
+                </div>
+            </div>
+
+            <aside class="hero-image-wrap" aria-label="Profile picture">
+                <div class="hero-photo-frame">
+                    <img src="assets/diego.jpg" alt="Carlos Alcantara" class="hero-photo">
+                </div>
+            </aside>
+
+            <span class="hero-circle hero-circle-one"></span>
+            <span class="hero-circle hero-circle-two"></span>
+            <span class="hero-circle hero-circle-three"></span>
+            <span class="hero-circle hero-circle-four"></span>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Project Item 1 -->
+                <article class="project-card">
+                    <h3>Real-Time Remote Desktop & Monitoring System</h3>
+                    <p>Engineered a VB.NET application for live network screen monitoring, remote desktop control, and active session management.</p>
+                    <ul class="project-tags">
+                        <li>VB.Net</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/project-one" target="_blank">GitHub</a>
+                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                    </div>
+                </article>
+
+                <!-- Project Item 2 -->
+                <article class="project-card">
+                    <h3>Embedded-Style Automated Tollgate & Billing System</h3>
+                    <p>Built a C system to classify vehicles and process toll fees in real time. Connected to MS Access for persistent transaction logging and billing storage.</p>
+                    <ul class="project-tags">
+                        <li>C</li>
+                        <li>MS Access</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/project-two" target="_blank">GitHub</a>
+                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                    </div>
+                </article>
+
+                <!-- Project Item 3 -->
+                <article class="project-card">
+                    <h3>Alumni Directory & Tracking Platform</h3>
+                    <p>Developed a Python platform to manage alumni records and track career progression. Implemented data handling and search filters to streamline directory management and networking.</p>
+                    <ul class="project-tags">
+                        <li>Python</li>
+                        <li>MySQL</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/project-three" target="_blank">GitHub</a>
+                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">JavaScript / TypeScript</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">VB.Net</span>
+                        <span class="skill-tag">Assembly</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web &amp; Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools &amp; Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git / GitHub</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">MySQL / SQLite</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience / Education Section -->
+        <section id="experience">
+            <h2>Experience &amp; Education</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <h3>IT Support Intern (OJT)</h3>
+                    <span class="timeline-date">April 2024 - May 2024</span>
+                    <p class="timeline-org">AMA University</p>
+                    <p>Maintained, updated, and repaired desktop PCs across campus laboratories. Handled physical hardware servicing, system troubleshooting, software updates, and workstation setup to ensure optimal lab operations.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>Bachelor of Science in Computer Science</h3>
+                    <span class="timeline-date">September 2024 - September 2028</span>
+                    <p class="timeline-org">De La Salle Araneta University</p>
+                    <p>Relevant Coursework: Data Structures & Algorithms, Operating Systems, Computer Networks, Database Management.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <div class="certifications-carousel" aria-label="Certifications carousel">
+                <button class="certification-arrow certification-previous" type="button" aria-label="Show previous certification">
+                    <span aria-hidden="true">&#8592;</span>
+                </button>
+
+                <div class="certifications-grid">
+                    <article class="certification-card">
+                        <span class="certification-icon">01</span>
+                        <div class="certification-content">
+                            <h3>Python Programming Fundamentals</h3>
+                            <p>Completed a foundational Python learning path covering syntax, data structures, programming logic, and basic problem solving.</p>
+                            <span class="certification-meta">Issued 2025</span>
+                            <a class="certification-verify" href="assets/certificates/python-programming-fundamentals.pdf" target="_blank" rel="noopener">Verify Certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="certification-card">
+                        <span class="certification-icon">02</span>
+                        <div class="certification-content">
+                            <h3>IT Support Essentials</h3>
+                            <p>Developed practical knowledge in hardware troubleshooting, workstation maintenance, software setup, and lab system support.</p>
+                            <span class="certification-meta">Issued 2024</span>
+                            <a class="certification-verify" href="assets/certificates/it-support-essentials.pdf" target="_blank" rel="noopener">Verify Certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="certification-card">
+                        <span class="certification-icon">03</span>
+                        <div class="certification-content">
+                            <h3>Data Structures &amp; Algorithms</h3>
+                            <p>Strengthened understanding of algorithmic thinking, complexity analysis, sorting, searching, and core programming patterns.</p>
+                            <span class="certification-meta">Coursework 2025</span>
+                            <a class="certification-verify" href="assets/certificates/data-structures-algorithms.pdf" target="_blank" rel="noopener">Verify Certificate</a>
+                        </div>
+                    </article>
+
+                    <article class="certification-card">
+                        <span class="certification-icon">04</span>
+                        <div class="certification-content">
+                            <h3>Web Development Foundations</h3>
+                            <p>Applied HTML, CSS, and JavaScript fundamentals while building structured and responsive front-end interfaces.</p>
+                            <span class="certification-meta">Issued 2025</span>
+                            <a class="certification-verify" href="assets/certificates/web-development-foundations.pdf" target="_blank" rel="noopener">Verify Certificate</a>
+                        </div>
+                    </article>
+                </div>
+
+                <button class="certification-arrow certification-next" type="button" aria-label="Show next certification">
+                    <span aria-hidden="true">&#8594;</span>
+                </button>
+            </div>
+        </section>
+
+
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>A Computer Science student at DLSAU passionate about building clean, efficient software that solves real-world problems. Let's connect and build something great!</p>
+                <p>An aspiring software developer pursuing a career in AI and cybersecurity, focused on building intelligent and secure applications.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p>I am currently looking for internship opportunities and collaborative projects. Feel free to reach out!</p>
+            
+            <form action="#" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div class="social-links">
+                <a class="hero-social" href="https://github.com/huwaffle" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="hero-social" href="https://www.linkedin.com/in/carlosalcantara1827/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="hero-social" href="https://instagram.com/mewhencarlos" target="_blank" rel="noreferrer">Instagram</a>
+                <a class="hero-social email-copy" href="#" data-email="carlos.alcantara.iii.27@gmail.com">Email</a>
+            </div>
+        </section>
+
+    </main>
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll back to top">
+        <span aria-hidden="true">↑</span>
+    </button>
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">
+        <img class="toast-icon" src="assets/icon.png" alt="" aria-hidden="true">
+        <span class="toast-text">Email copied</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy;2026 Carlos Alcantara. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
