@@ -66,8 +66,13 @@ function setupEmailCopy() {
         emailLink.addEventListener("click", async (event) => {
             event.preventDefault();
             const email = emailLink.dataset.email;
-            await copyEmailToClipboard(email);
-            showCopyToast("Email copied");
+
+            try {
+                await copyEmailToClipboard(email);
+                showCopyToast("Email copied");
+            } catch (error) {
+                showCopyToast("Copy failed");
+            }
         });
     });
 }
@@ -104,7 +109,24 @@ function setupContactForm() {
             return;
         }
 
-        showCopyToast("Message sent");
+        const formData = new FormData(contactForm);
+        const name = (formData.get("name") || "").toString().trim();
+        const email = (formData.get("email") || "").toString().trim();
+        const message = (formData.get("message") || "").toString().trim();
+
+        const subject = encodeURIComponent(`Portfolio inquiry from ${name || "Visitor"}`);
+        const body = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent("carlos.alcantara.iii.27@gmail.com")}&su=${subject}&body=${body}`;
+        const gmailWindow = window.open(gmailUrl, "_blank", "noopener,noreferrer");
+
+        if (!gmailWindow) {
+            window.location.href = `mailto:carlos.alcantara.iii.27@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        showCopyToast("Opening Gmail");
         contactForm.reset();
     });
 }
