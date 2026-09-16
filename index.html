@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carlos Alcantara — Portfolio</title>
-    <link rel="icon" href="assets/icon.png" type="image/png">
+    <link rel="icon" href="assets/images/icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
 </head>
@@ -57,13 +57,13 @@
 
                 <div class="hero-cta">
                     <a href="#projects" class="btn">View Projects</a>
-                    <a href="assets/ALCANTARA RESUME.pdf" class="btn resume-link" target="_blank" rel="noopener noreferrer" data-resume="Resume">Resume</a>
+                    <a href="assets/resume/ALCANTARA RESUME.pdf" class="btn resume-link" target="_blank" rel="noopener noreferrer" data-resume="Resume">Resume</a>
                 </div>
             </div>
 
             <aside class="hero-image-wrap" aria-label="Profile picture">
                 <div class="hero-photo-frame">
-                    <img src="assets/me.jpg" alt="Carlos Alcantara" class="hero-photo">
+                    <img src="assets/images/me.jpg" alt="Carlos Alcantara" class="hero-photo">
                 </div>
             </aside>
 
@@ -79,20 +79,36 @@
             <div class="projects-grid">
                 
                 <!-- Project Item 1 -->
-                <article class="project-card">
+                <article
+                    class="project-card"
+                    data-project="remote-desktop"
+                    data-title="Real-Time Remote Desktop & Monitoring System"
+                    data-description="The Real-Time Remote Desktop & Monitoring System is a VB.NET-based application designed for remotely managing and monitoring multiple computers over a network. The project was initially based on an existing server-client implementation that supported only a single client. I improved the system by redesigning its architecture to allow the server to manage multiple clients simultaneously and expanded its functionality with a wide range of remote management and monitoring features. I also redesigned the graphical user interface to provide a cleaner, more organized, and more intuitive experience for managing connected clients."
+                    data-github="https://github.com/huwaffle/Real-Time-Remote-Desktop-Monitoring-System"
+                    data-tags="VB.Net, Monitoring, Remote Access"
+                    data-images="assets/projects/Real-Time Remote Desktop & Monitoring System/1.png,assets/projects/Real-Time Remote Desktop & Monitoring System/2.png,assets/projects/Real-Time Remote Desktop & Monitoring System/3.png"
+                >
                     <h3>Real-Time Remote Desktop & Monitoring System</h3>
                     <p>Engineered a VB.NET application for live network screen monitoring, remote desktop control, and active session management.</p>
                     <ul class="project-tags">
                         <li>VB.Net</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/yourusername/project-one" target="_blank">GitHub</a>
-                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                        <a href="https://github.com/huwaffle/Real-Time-Remote-Desktop-Monitoring-System" target="_blank">GitHub</a>
+                        <button class="project-view-btn" type="button">View Project</button>
                     </div>
                 </article>
 
                 <!-- Project Item 2 -->
-                <article class="project-card">
+                <article
+                    class="project-card"
+                    data-project="tollgate"
+                    data-title="Embedded-Style Automated Tollgate & Billing System"
+                    data-description="The automated tollgate system classifies vehicles in real time and calculates precise toll charges while retaining transaction logs for billing and review. By combining fast input processing with persistent database storage, the project reflects an embedded-style workflow tailored for operational efficiency and transparent record tracking."
+                    data-github="https://github.com/yourusername/project-two"
+                    data-tags="C, MS Access, Billing"
+                    data-images="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80"
+                >
                     <h3>Embedded-Style Automated Tollgate & Billing System</h3>
                     <p>Built a C system to classify vehicles and process toll fees in real time. Connected to MS Access for persistent transaction logging and billing storage.</p>
                     <ul class="project-tags">
@@ -101,12 +117,20 @@
                     </ul>
                     <div class="project-links">
                         <a href="https://github.com/yourusername/project-two" target="_blank">GitHub</a>
-                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                        <button class="project-view-btn" type="button">View Project</button>
                     </div>
                 </article>
 
                 <!-- Project Item 3 -->
-                <article class="project-card">
+                <article
+                    class="project-card"
+                    data-project="alumni"
+                    data-title="Alumni Directory & Tracking Platform"
+                    data-description="This alumni platform simplifies record management, search, and career-tracking workflows by organizing community data in one place. It makes it easier to keep profiles updated, discover opportunities, and maintain stronger connections between current students and former graduates through a searchable directory experience."
+                    data-github="https://github.com/yourusername/project-three"
+                    data-tags="Python, MySQL, Directory"
+                    data-images="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                >
                     <h3>Alumni Directory & Tracking Platform</h3>
                     <p>Developed a Python platform to manage alumni records and track career progression. Implemented data handling and search filters to streamline directory management and networking.</p>
                     <ul class="project-tags">
@@ -115,11 +139,35 @@
                     </ul>
                     <div class="project-links">
                         <a href="https://github.com/yourusername/project-three" target="_blank">GitHub</a>
-                        <a href="https://yourprojectdemo.com" target="_blank">Live Demo</a>
+                        <button class="project-view-btn" type="button">View Project</button>
                     </div>
                 </article>
             </div>
         </section>
+
+        <div class="project-modal" id="project-modal" aria-hidden="true">
+            <div class="project-modal-backdrop" data-close-modal></div>
+            <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+                <button class="project-modal-close" type="button" aria-label="Close project detail">×</button>
+                <div class="project-modal-gallery" id="project-modal-gallery"></div>
+                <div class="project-modal-body">
+                    <p class="project-modal-kicker">Project Overview</p>
+                    <h3 id="project-modal-title">Project Title</h3>
+                    <p id="project-modal-description"></p>
+                    <ul class="project-modal-tags" id="project-modal-tags"></ul>
+                    <div class="project-modal-actions">
+                        <a id="project-modal-github" class="project-modal-github" href="#" target="_blank" rel="noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-image-lightbox" id="project-image-lightbox" aria-hidden="true">
+            <div class="project-image-lightbox-backdrop" data-close-image-lightbox></div>
+            <div class="project-image-lightbox-content" role="dialog" aria-modal="true" aria-label="Project image viewer">
+                <img src="" alt="Project preview" />
+            </div>
+        </div>
 
         <!-- Skills Section -->
         <section id="skills">
@@ -195,6 +243,8 @@
                         </div>
                     </article>
 
+                    <!-- CERTIFICATIONS BELOW ARE COMMENTED OUT FOR FUTURE USE
+
                     <article class="certification-card">
                         <span class="certification-icon">02</span>
                         <div class="certification-content">
@@ -224,6 +274,9 @@
                             <a class="certification-verify" href="assets/certificates/web-development-foundations.pdf" target="_blank" rel="noopener">Verify Certificate</a>
                         </div>
                     </article>
+
+                    -->
+
                 </div>
 
                 <button class="certification-arrow certification-next" type="button" aria-label="Show next certification">
@@ -264,7 +317,7 @@
         <span aria-hidden="true">↑</span>
     </button>
     <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">
-        <img class="toast-icon" src="assets/icon.png" alt="" aria-hidden="true">
+        <img class="toast-icon" src="assets/images/icon.png" alt="" aria-hidden="true">
         <span class="toast-text">Email copied</span>
     </div>
 
