@@ -11,6 +11,18 @@
 
 <body>
 
+    <!-- Decorative background circles (behind all content) -->
+    <div class="page-circles" aria-hidden="true">
+        <span class="page-circle page-circle-one"></span>
+        <span class="page-circle page-circle-two"></span>
+        <span class="page-circle page-circle-three"></span>
+        <span class="page-circle page-circle-four"></span>
+        <span class="page-circle page-circle-five"></span>
+        <span class="page-circle page-circle-six"></span>
+        <span class="page-circle page-circle-seven"></span>
+        <span class="page-circle page-circle-eight"></span>
+    </div>
+
     <!-- Header / Navigation -->
     <header>
         <div class="logo">
@@ -30,12 +42,38 @@
         <div class="theme-toggle">
             <span class="theme-label">MODE</span>
 
-            <button id="theme-switch" class="theme-switch" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
+            <button class="theme-switch" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
                 <span class="toggle-dot"></span>
             </button>
         </div>
 
+        <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="mobile-menu-icon" aria-hidden="true">&#9776;</span>
+        </button>
+
     </header>
+
+    <!-- Mobile Menu (nav + mode toggle, shown on tablet & mobile) -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience &amp; Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle mobile-theme">
+            <span class="theme-label">MODE</span>
+
+            <button class="theme-switch" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
+                <span class="toggle-dot"></span>
+            </button>
+        </div>
+    </div>
 
     <!-- Main Content Area -->
     <main>
@@ -319,6 +357,8 @@
         <img class="toast-icon" src="assets/images/icon.png" alt="" aria-hidden="true">
         <span class="toast-text">Email copied</span>
     </div>
+
+    
 
     <!-- Footer -->
     <footer>

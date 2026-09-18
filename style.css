@@ -114,7 +114,87 @@ body {
     color: var(--text);
     font-family: var(--font-main);
     line-height: 1.7;
+    position: relative;
     transition: background-color var(--transition), color var(--transition);
+}
+
+/* =========================================================
+   PAGE BACKGROUND CIRCLES (below the hero, whole page)
+   ========================================================= */
+
+.page-circles {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.page-circle {
+    position: absolute;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    opacity: 0.85;
+}
+
+/* Projects area */
+.page-circle-one {
+    width: 320px;
+    height: 320px;
+    left: -120px;
+    top: 105vh;
+}
+
+.page-circle-two {
+    width: 160px;
+    height: 160px;
+    right: 6%;
+    top: 125vh;
+}
+
+/* Skills area */
+.page-circle-three {
+    width: 420px;
+    height: 420px;
+    right: -160px;
+    top: 175vh;
+}
+
+.page-circle-four {
+    width: 110px;
+    height: 110px;
+    left: 12%;
+    top: 205vh;
+}
+
+/* Experience area */
+.page-circle-five {
+    width: 260px;
+    height: 260px;
+    left: -90px;
+    top: 245vh;
+}
+
+.page-circle-six {
+    width: 140px;
+    height: 140px;
+    right: 10%;
+    top: 270vh;
+}
+
+/* About / contact area */
+.page-circle-seven {
+    width: 380px;
+    height: 380px;
+    right: -140px;
+    bottom: 8%;
+}
+
+.page-circle-eight {
+    width: 120px;
+    height: 120px;
+    left: 8%;
+    bottom: 14%;
 }
 
 
@@ -557,6 +637,9 @@ h1 {
     color: var(--text);
     font-family: var(--font-mono);
     font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -874,8 +957,13 @@ h1 {
 .project-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.78);
-    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+}
+
+body.light-mode .project-modal-backdrop {
+    background: rgba(255, 255, 255, 0.45);
 }
 
 .project-modal-dialog {
@@ -939,8 +1027,9 @@ h1 {
 .project-image-lightbox-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.86);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    backdrop-filter: blur(16px) saturate(120%);
 }
 
 .project-image-lightbox-content {
@@ -1229,29 +1318,45 @@ button:hover {
     position: fixed;
     right: 30px;
     bottom: 90px;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
     border: 1px solid var(--border);
-    background: var(--card);
+    background: var(--bg-soft);
     color: var(--text);
     font-family: var(--font-mono);
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transform: translateY(16px);
-    transition: var(--transition);
+    transition: opacity var(--transition), transform var(--transition),
+                visibility var(--transition), color var(--transition),
+                border-color var(--transition), background-color var(--transition);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     z-index: 1500;
+}
+
+.scroll-top span {
+    display: block;
+    line-height: 1;
+    transform: translateY(-1px);
 }
 
 .scroll-top.visible {
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
 }
 
-.scroll-top:hover {
+.scroll-top:hover,
+.scroll-top:focus-visible {
     color: var(--accent);
     border-color: var(--accent);
 }
@@ -1311,31 +1416,116 @@ footer {
 }
 
 /* =========================================================
+   MOBILE MENU (tablet & mobile navigation bar)
+   ========================================================= */
+.mobile-menu-button {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.mobile-menu-button:hover,
+.mobile-menu-button:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.mobile-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border);
+    padding: 24px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mobile-nav a {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 14px 4px;
+    display: block;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.mobile-nav a:hover {
+    color: var(--text);
+}
+
+.mobile-theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Hide the scroll-to-top button while the mobile menu is open */
+body.menu-open .scroll-top {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
 
     header {
-        min-height: auto;
         padding: 0 20px;
-        flex-wrap: wrap;
-        gap: 10px;
     }
 
-    nav {
-        order: 3;
-        width: 100%;
+    header nav,
+    header > .theme-toggle {
+        display: none;
     }
 
-    nav ul {
-        gap: 12px;
-        flex-wrap: wrap;
+    .mobile-menu-button {
+        display: inline-flex;
     }
+}
 
-    nav a {
-        font-size: 9px;
-    }
+@media (max-width: 800px) {
 
     section {
         padding: 90px 20px;
@@ -1426,17 +1616,23 @@ footer {
 
     .project-modal {
         padding: 12px;
+        align-items: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .project-modal-dialog {
         width: 100%;
-        max-height: 85vh;
+        max-height: none;
+        margin: 16px auto;
         grid-template-columns: 1fr;
+        overflow: visible;
     }
 
     .project-modal-body {
         order: 1;
         max-height: none;
+        overflow: visible;
         padding: 22px 18px 18px;
     }
 
@@ -1448,46 +1644,12 @@ footer {
     }
 
     #project-modal-description {
-        max-height: 140px;
+        max-height: none;
+        overflow-y: visible;
     }
 }
 
 @media (max-width: 500px) {
-
-    header {
-        height: auto;
-        min-height: 70px;
-        padding: 15px 20px;
-
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-
-        gap: 15px;
-    }
-
-    .logo {
-        grid-column: 1;
-    }
-
-    .theme-toggle {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    nav {
-        grid-column: 1 / -1;
-        grid-row: 2;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-        gap: 10px 15px;
-    }
-
-    nav a {
-        font-size: 9px;
-    }
 
     #hero {
         padding-top: 150px;
@@ -1508,7 +1670,7 @@ footer {
     }
 
     .project-modal-dialog {
-        max-height: 82vh;
+        margin: 10px auto;
     }
 
     .project-modal-body {
@@ -1526,4 +1688,3 @@ footer {
         height: 180px;
     }
 }
-

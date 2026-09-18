@@ -1,23 +1,19 @@
 const body = document.body;
-const themeSwitch = document.getElementById("theme-switch");
+const themeSwitches = Array.from(document.querySelectorAll(".theme-switch"));
 
 function applySavedTheme() {
     const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
 
     if (savedTheme === "light") {
         body.classList.add("light-mode");
-        if (themeSwitch) {
-            themeSwitch.setAttribute("aria-pressed", "true");
-        }
+        themeSwitches.forEach((btn) => btn.setAttribute("aria-pressed", "true"));
     }
 }
 
 function updateTheme() {
     const isLight = body.classList.toggle("light-mode");
 
-    if (themeSwitch) {
-        themeSwitch.setAttribute("aria-pressed", String(isLight));
-    }
+    themeSwitches.forEach((btn) => btn.setAttribute("aria-pressed", String(isLight)));
 
     localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
 }
@@ -171,6 +167,15 @@ function setupCertificationsCarousel() {
 
         cards.forEach((card, cardIndex) => {
             const isActive = cardIndex === currentIndex;
+
+            if (isActive) {
+                // Clear the animation classes and force a reflow so the slide
+                // animation replays even when the same card stays active
+                // (e.g. when there is only one certification).
+                card.classList.remove("slide-from-left", "slide-from-right");
+                void card.offsetWidth;
+            }
+
             card.classList.toggle("is-active", isActive);
             card.classList.toggle("slide-from-left", isActive && direction === "previous");
             card.classList.toggle("slide-from-right", isActive && direction === "next");
@@ -178,13 +183,17 @@ function setupCertificationsCarousel() {
         });
     }
 
-    previousButton.addEventListener("click", () => {
-        showCertification(currentIndex - 1, "previous");
-    });
+    if (previousButton) {
+        previousButton.addEventListener("click", () => {
+            showCertification(currentIndex - 1, "previous");
+        });
+    }
 
-    nextButton.addEventListener("click", () => {
-        showCertification(currentIndex + 1, "next");
-    });
+    if (nextButton) {
+        nextButton.addEventListener("click", () => {
+            showCertification(currentIndex + 1, "next");
+        });
+    }
 
     showCertification(currentIndex);
 }
@@ -351,9 +360,9 @@ function setupScrollReveal() {
     revealItems.forEach((item) => revealObserver.observe(item));
 }
 
-if (themeSwitch) {
+if (themeSwitches.length) {
     applySavedTheme();
-    themeSwitch.addEventListener("click", updateTheme);
+    themeSwitches.forEach((btn) => btn.addEventListener("click", updateTheme));
 }
 
 setupEmailCopy();
@@ -363,3 +372,57 @@ setupScrollTopButton();
 setupCertificationsCarousel();
 setupProjectModal();
 setupScrollReveal();
+setupMobileMenu();
+
+function setupMobileMenu() {
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (!menuButton || !mobileMenu) return;
+
+    function openMenu() {
+        mobileMenu.classList.add("open");
+        document.body.classList.add("menu-open");
+        menuButton.setAttribute("aria-expanded", "true");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        const icon = menuButton.querySelector('.mobile-menu-icon');
+        if (icon) icon.textContent = '✕';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        const icon = menuButton.querySelector('.mobile-menu-icon');
+        if (icon) icon.textContent = '☰';
+    }
+
+    menuButton.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("open")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    mobileMenu.addEventListener("click", (event) => {
+        if (event.target.tagName === "A" || event.target === mobileMenu) {
+            closeMenu();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 1024 && mobileMenu.classList.contains("open")) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+            closeMenu();
+        }
+    });
+}
