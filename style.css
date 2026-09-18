@@ -858,6 +858,14 @@ h1 {
     color: var(--text-soft);
     line-height: 1.4;
     white-space: nowrap;
+
+    transition: var(--transition);
+}
+
+.project-tags li:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--accent-soft);
 }
 
 .project-links {
@@ -1101,6 +1109,13 @@ body.light-mode .project-modal-backdrop {
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--text-soft);
+    transition: var(--transition);
+}
+
+.project-modal-tags li:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--accent-soft);
 }
 
 .project-modal-actions {
