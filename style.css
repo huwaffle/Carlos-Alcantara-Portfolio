@@ -990,10 +990,16 @@ body.light-mode .project-modal-backdrop {
 .project-modal-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
     gap: 12px;
     padding: 24px;
     background: var(--bg-soft);
     border-right: 1px solid var(--border);
+    /* Column scrolls independently so extra images never get clipped by the dialog */
+    max-height: 80vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .project-modal-gallery img {
@@ -1070,10 +1076,13 @@ body.light-mode .project-modal-backdrop {
 }
 
 #project-modal-description {
-    max-height: 160px;
+    /* Fill whatever room is left below the title and above the tags/actions,
+       instead of a fixed height, then scroll only if it still doesn't fit. */
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
-    padding-right: 8px;
-    scrollbar-width: thin;
+    padding-right: 10px;
+    margin-right: -10px;
 }
 
 .project-modal-kicker {
@@ -1124,6 +1133,46 @@ body.light-mode .project-modal-backdrop {
     flex-wrap: wrap;
     gap: 12px;
     align-items: center;
+}
+
+/* =========================================================
+   SEAMLESS SCROLLBARS (modal gallery, description, mobile modal)
+   ========================================================= */
+
+.project-modal,
+.project-modal-gallery,
+#project-modal-description {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.project-modal::-webkit-scrollbar,
+.project-modal-gallery::-webkit-scrollbar,
+#project-modal-description::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.project-modal::-webkit-scrollbar-track,
+.project-modal-gallery::-webkit-scrollbar-track,
+#project-modal-description::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.project-modal::-webkit-scrollbar-thumb,
+.project-modal-gallery::-webkit-scrollbar-thumb,
+#project-modal-description::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    opacity: 0.6;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+}
+
+.project-modal::-webkit-scrollbar-thumb:hover,
+.project-modal-gallery::-webkit-scrollbar-thumb:hover,
+#project-modal-description::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-muted);
 }
 
 .project-modal-github {
@@ -1634,6 +1683,7 @@ body.menu-open .scroll-top {
         align-items: flex-start;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
 
     .project-modal-dialog {
@@ -1656,9 +1706,14 @@ body.menu-open .scroll-top {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         border-right: none;
         border-bottom: 1px solid var(--border);
+        /* Let the whole modal scroll as one on mobile instead of a
+           scroll-within-a-scroll, so images are never clipped either way. */
+        max-height: none;
+        overflow-y: visible;
     }
 
     #project-modal-description {
+        flex: 0 1 auto;
         max-height: none;
         overflow-y: visible;
     }
